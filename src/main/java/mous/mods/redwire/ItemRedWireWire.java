@@ -1,5 +1,7 @@
 package mous.mods.redwire;
 
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -20,6 +22,20 @@ public class ItemRedWireWire extends Item{
 	// Look through IE wire code for inspiration
 	
 	public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int a, float b, float c, float d){
-		return true;
+		UseWireEvent event = new UseWireEvent(player, item, world, x, y, z);
+		if (event.getResult() == Result.ALLOW){
+			System.out.println("Allow.");
+			return true;
+		}
+		
+		Block block = world.getBlock(x, y, z);
+		
+		if (a != 0 && block == RedWire.redWireConnectorBlock){
+			System.out.println("Use success.");
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

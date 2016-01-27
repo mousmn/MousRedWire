@@ -112,4 +112,7 @@ public class BlockRedWireConnector extends Block {
     		return true;
     	}
     }
+    // Probably need to work on TileEntity, NBT, packets?
+    // Create list of partners for each of pair
+    // Tell them who they need to be mindful of from then on
 }
